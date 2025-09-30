@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 function AnimatedCounter({ target, duration = 1200 }) {
   const [count, setCount] = useState(0);
@@ -102,7 +103,7 @@ export default function Home() {
     <div className="min-h-screen">
       <header className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-white/10 shadow-lg">
         <nav className="container mx-auto px-6 py-3 flex justify-between items-center max-w-7xl">
-          <img src="/logo-muv-white.png" alt="MUV" className="h-14" />
+          <Image src="/logo-muv-white.png" alt="MUV" width={56} height={56} className="h-14" />
 
           <ul className="hidden md:flex gap-8 text-white items-center absolute left-1/2 transform -translate-x-1/2 -ml-7">
             <li><a href="#modalidades" className="hover:text-[#f6fa36] transition-colors font-medium">Modalidades</a></li>
@@ -155,7 +156,7 @@ export default function Home() {
 
         <div className="relative text-center text-white px-4 py-20 max-w-5xl mx-auto">
           <div className="animate-fade-in">
-            <img src="/logo-muv-white.png" alt="MUV" className="h-48 md:h-60 mb-6 mx-auto" />
+            <Image src="/logo-muv-white.png" alt="MUV" width={240} height={240} className="h-48 md:h-60 mb-6 mx-auto" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Transforme seu corpo,<br />
               <span className="text-[#f6fa36]">fortaleça sua mente</span>
@@ -249,7 +250,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed italic">
-                  "{depoimento.texto}"
+                  &ldquo;{depoimento.texto}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-[#f6fa36] to-[#e5e925] rounded-full flex items-center justify-center text-black font-bold text-lg">
@@ -403,7 +404,7 @@ export default function Home() {
             {/* Logo e texto à esquerda */}
             <div className="flex-shrink-0">
               <div className="flex items-center gap-3 mb-1">
-                <img src="/logo-muv-white.png" alt="MUV" className="h-16" />
+                <Image src="/logo-muv-white.png" alt="MUV" width={64} height={64} className="h-16" />
               </div>
               <p className="text-sm text-gray-400 max-w-xs">Transformando vidas através do esporte e da disciplina.</p>
             </div>
