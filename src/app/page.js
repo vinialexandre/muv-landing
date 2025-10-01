@@ -102,53 +102,64 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <header className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-white/10 shadow-lg">
-        <nav className="container mx-auto px-6 py-3 flex justify-between items-center max-w-7xl">
-          <Image src="/logo-muv-white.png" alt="MUV" width={56} height={56} className="h-14" />
-
-          <ul className="hidden md:flex gap-8 text-white items-center absolute left-1/2 transform -translate-x-1/2 -ml-7">
-            <li><a href="#modalidades" className="hover:text-[#f6fa36] transition-colors font-medium">Modalidades</a></li>
-            <li><a href="#soma" className="hover:text-[#f6fa36] transition-colors font-medium">Projeto SOMA</a></li>
-            <li><a href="#depoimentos" className="hover:text-[#f6fa36] transition-colors font-medium">Depoimentos</a></li>
-            <li><a href="#contato" className="hover:text-[#f6fa36] transition-colors font-medium">Contato</a></li>
-          </ul>
-
-          <div className="flex items-center gap-4">
-            <a href="#contato" className="hidden md:inline-block bg-[#f6fa36] hover:bg-[#e5e925] text-black px-6 py-2.5 rounded-full transition-all font-bold shadow-lg hover:shadow-xl hover:scale-105">
-              Marcar Aula
-            </a>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2"
-              aria-label="Menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+      <header className="fixed top-0 inset-x-0 bg-black/95 backdrop-blur-md z-50 border-b border-white/10 shadow-lg">
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+          <div className="flex items-center justify-between w-full">
+            <Image src="/logo-muv-white.png" alt="MUV" width={56} height={56} className="h-12 w-auto" />
+            <div className="hidden md:flex flex-1 justify-center">
+              <ul className="flex gap-8 text-white items-center">
+                <li><a href="#modalidades" className="hover:text-[#f6fa36] transition-colors font-medium">Modalidades</a></li>
+                <li><a href="#soma" className="hover:text-[#f6fa36] transition-colors font-medium">Projeto SOMA</a></li>
+                <li><a href="#depoimentos" className="hover:text-[#f6fa36] transition-colors font-medium">Depoimentos</a></li>
+                <li><a href="#contato" className="hover:text-[#f6fa36] transition-colors font-medium">Contato</a></li>
+              </ul>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="#contato" className="hidden md:inline-block bg-[#f6fa36] hover:bg-[#e5e925] text-black px-6 py-2.5 rounded-full transition-all font-bold shadow-lg hover:shadow-xl hover:scale-105">
+                Marcar Aula
+              </a>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className={`md:hidden text-white p-2 transition-transform duration-300 ${mobileMenuOpen ? 'rotate-90' : ''}`}
+                aria-label="Menu"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav"
+              >
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </nav>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
-            <ul className="flex flex-col text-white py-4">
-              <li><a href="#modalidades" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-3 hover:bg-white/5 hover:text-[#f6fa36] transition-colors">Modalidades</a></li>
-              <li><a href="#soma" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-3 hover:bg-white/5 hover:text-[#f6fa36] transition-colors">Projeto SOMA</a></li>
-              <li><a href="#depoimentos" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-3 hover:bg-white/5 hover:text-[#f6fa36] transition-colors">Depoimentos</a></li>
-              <li><a href="#contato" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-3 hover:bg-white/5 hover:text-[#f6fa36] transition-colors">Contato</a></li>
-              <li className="px-6 py-3">
-                <a href="#contato" className="block text-center bg-[#f6fa36] hover:bg-[#e5e925] text-black px-6 py-2.5 rounded-full transition-all font-bold">
+        <div className={`md:hidden fixed inset-0 w-screen h-screen z-[60] bg-black/95 transition-transform duration-300 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Fechar menu"
+            className="absolute top-4 right-4 text-white p-2 transition-transform duration-300 hover:scale-110"
+          >
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="flex min-h-screen items-center justify-center">
+            <ul id="mobile-nav" className="flex flex-col items-center gap-2 text-white py-6">
+              <li><a href="#modalidades" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-4 text-2xl hover:bg-white/5 hover:text-[#f6fa36] transition-colors text-center">Modalidades</a></li>
+              <li><a href="#soma" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-4 text-2xl hover:bg-white/5 hover:text-[#f6fa36] transition-colors text-center">Projeto SOMA</a></li>
+              <li><a href="#depoimentos" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-4 text-2xl hover:bg-white/5 hover:text-[#f6fa36] transition-colors text-center">Depoimentos</a></li>
+              <li><a href="#contato" onClick={() => setMobileMenuOpen(false)} className="block px-6 py-4 text-2xl hover:bg-white/5 hover:text-[#f6fa36] transition-colors text-center">Contato</a></li>
+              <li className="px-6 py-4 w-full">
+                <a href="#contato" className="block text-center bg-[#f6fa36] hover:bg-[#e5e925] text-black px-6 py-3 rounded-full transition-all font-bold text-2xl max-w-sm mx-auto">
                   Marcar Aula
                 </a>
               </li>
             </ul>
           </div>
-        )}
+        </div>
       </header>
 
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
@@ -159,12 +170,12 @@ export default function Home() {
           <div className="animate-fade-in">
             <Image src="/logo-muv-white.png" alt="MUV" width={240} height={240} className="h-48 md:h-60 mb-6 mx-auto" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Transforme seu corpo,<br />
-              <span className="text-[#f6fa36]">fortaleça sua mente</span>
+              Onde mente e corpo<br />
+              <span className="text-[#f6fa36]">se conectam</span>
             </h1>
             <p className="text-lg md:text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
-              Jiu-Jitsu, Funcional, Boxe e MMA com os melhores professores da região.
-              Marque sua aula hoje mesmo!
+              Desenvolvimento físico, social e mental <br/>
+              Matricule-se hoje mesmo!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a href="#contato" className="inline-block bg-[#f6fa36] hover:bg-[#e5e925] text-black px-10 py-4 rounded-full text-lg font-bold transition-all shadow-2xl hover:shadow-[#f6fa36]/50 hover:scale-105">
@@ -179,7 +190,7 @@ export default function Home() {
       </section>
 
       <section id="modalidades" className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-0 sm:px-4 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">Nossas Modalidades</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -191,7 +202,7 @@ export default function Home() {
             {modalidades.map((modalidade, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 border-2 border-gray-200 hover:border-[#f6fa36] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full"
+                className="group bg-gray-50 rounded-none md:rounded-2xl p-8 border-0 md:border-2 border-gray-200 hover:border-[#f6fa36] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full"
               >
                 <div className="text-center mb-6">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-gray-800 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -202,9 +213,9 @@ export default function Home() {
                 <p className="text-gray-600 mb-6 leading-relaxed text-center flex-grow">
                   {modalidade.description}
                 </p>
-                <div className="space-y-2 mb-6 h-20 flex flex-col justify-start ml-6">
+                <div className="space-y-2 mb-6 flex flex-col items-center justify-center">
                   {modalidade.benefits.map((benefit, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                    <div key={i} className="flex items-center justify-center gap-2 text-sm text-gray-700">
                       <svg className="w-5 h-5 text-[#f6fa36] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
@@ -229,7 +240,7 @@ export default function Home() {
 
 
       <section id="depoimentos" className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-0 sm:px-4 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">O que dizem nossos alunos</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -241,7 +252,7 @@ export default function Home() {
             {depoimentos.map((depoimento, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gray-100 hover:border-[#f6fa36]"
+                className="bg-white rounded-none md:rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-0 md:border-2 border-gray-100 hover:border-[#f6fa36]"
               >
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -298,7 +309,7 @@ export default function Home() {
       </section>
 
       <section id="contato" className="py-20 bg-gradient-to-b from-white to-gray-50 text-black">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-0 sm:px-4 max-w-7xl">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Comece Hoje Mesmo</h2>
@@ -307,7 +318,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-100">
+            <div className="bg-white rounded-none md:rounded-3xl shadow-2xl overflow-hidden border-0 md:border-2 border-gray-100">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="bg-gradient-to-br from-black to-gray-900 p-10 text-white">
                   <h3 className="text-3xl font-bold mb-8">Informações de Contato</h3>
@@ -389,45 +400,41 @@ export default function Home() {
       </section>
 
       <footer className="bg-gradient-to-b from-black to-gray-900 text-gray-400 py-12 border-t border-[#f6fa36]/20">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center justify-between">
-            {/* Logo e texto à esquerda */}
-            <div className="flex-shrink-0">
-              <div className="flex items-center gap-3 mb-1">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 md:gap-16 lg:gap-20 md:grid-cols-12 items-start">
+            <div className="flex-shrink-0 text-center md:text-left md:col-span-3">
+              <div className="flex items-center gap-3 mb-1 justify-center md:justify-start">
                 <Image src="/logo-muv-white.png" alt="MUV" width={64} height={64} className="h-16" />
               </div>
-              <p className="text-sm text-gray-400 max-w-xs">Transformando vidas através do esporte e da disciplina.</p>
+              <p className="text-sm text-gray-400 max-w-none mx-auto md:mx-0">Transformando vidas através do esporte e da disciplina.</p>
             </div>
 
-            {/* Três colunas no meio */}
-            <div className="flex gap-16 ml-32">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 md:col-span-6 md:px-6 md:gap-8 lg:gap-24">
+              <div className="md:col-span-3 md:pr-10">
+                <div className="flex items-center gap-3 mb-3 justify-center sm:justify-center md:justify-start">
                   <svg className="w-5 h-5 text-[#f6fa36] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                   </svg>
                   <h4 className="text-white font-bold">Endereço</h4>
                 </div>
-                <p className="text-sm text-gray-400 ml-8">Av. Gen. Daltro Filho, 1655<br/>Hamburgo Velho, Novo Hamburgo</p>
+                <p className="text-sm text-gray-400 lg:ml-8 ml-0 text-center sm:text-center md:text-left">Av. Gen. Daltro Filho, 1655<span className="hidden sm:inline"> — </span><br className="sm:hidden" />Hamburgo Velho, Novo Hamburgo</p>
               </div>
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <svg className="w-5 h-5 text-[#f6fa36]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="md:col-span-1 lg:col-span-2">
+                <div className="flex items-center gap-3 mb-3 justify-center sm:justify-center md:justify-start">
+                  <svg className="w-5 h-5 text-[#f6fa36] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
                   <h4 className="text-white font-bold">Telefone</h4>
                 </div>
-                <p className="text-sm text-gray-400 ml-8">+55 51 99606-3998</p>
+                <p className="text-sm text-gray-400 lg:ml-8 ml-0 text-center sm:text-center md:text-left whitespace-nowrap">+55 51 99606-3998</p>
               </div>
-
             </div>
 
-            {/* Redes sociais à direita */}
-            <div className="flex-shrink-0 ml-auto text-right">
-              <div className="flex items-center gap-3 mb-3 justify-end">
+            <div className="flex-shrink-0 md:ml-auto text-center md:text-right md:col-span-3 mt-10 sm:mt-12 md:mt-0">
+              <div className="flex items-center gap-3 mb-3 justify-center md:justify-end">
                 <h5 className="text-white font-bold">Nos siga nas redes</h5>
               </div>
-              <div className="flex gap-3 justify-end">
+              <div className="flex gap-3 justify-center md:justify-end">
                 <a href="https://www.facebook.com/profile.php?id=61579439244677" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 hover:bg-[#f6fa36] rounded-full flex items-center justify-center transition-all hover:scale-110">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -443,7 +450,6 @@ export default function Home() {
                     <path d="M23.498 6.186a2.998 2.998 0 0 0-2.112-2.12C19.638 3.5 12 3.5 12 3.5s-7.638 0-9.386.566a2.998 2.998 0 0 0-2.112 2.12A31.174 31.174 0 0 0 .5 12a31.174 31.174 0 0 0 .002 5.814 2.998 2.998 0 0 0 2.112 2.12C4.362 20.5 12 20.5 12 20.5s7.638 0 9.386-.566a2.998 2.998 0 0 0 2.112-2.12A31.174 31.174 0 0 0 23.5 12a31.174 31.174 0 0 0-.002-5.814zM9.75 15.02V8.98L15.5 12z"/>
                   </svg>
                 </a>
-
               </div>
             </div>
           </div>
